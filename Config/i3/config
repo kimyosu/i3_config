@@ -1,0 +1,222 @@
+# Este arquivo foi gerado automaticamente pelo i3-config-wizard(1).
+# Ele não será sobrescrito, então edite como desejar.
+#
+# Se você mudar o layout do teclado, exclua este arquivo e execute novamente o i3-config-wizard(1).
+
+# Arquivo de configuração do i3 (v4)
+#
+# Consulte https://i3wm.org/docs/userguide.html para uma referência completa.
+
+set $mod Mod4
+
+# Fonte para os títulos das janelas. Será usada também pela barra, a menos que uma fonte diferente
+# seja especificada no bloco bar {} abaixo.
+font pango:monospace 8
+
+# Esta fonte é amplamente instalada, fornece muitos glifos Unicode, renderização de texto da direita para a esquerda
+# e escalabilidade em displays retina/hidpi (graças ao pango).
+#font pango:DejaVu Sans Mono 8
+
+# Inicia arquivos .desktop do XDG autostart usando o dex. Veja também
+# https://wiki.archlinux.org/index.php/XDG_Autostart
+exec --no-startup-id dex --autostart --environment i3
+
+# A combinação de xss-lock, nm-applet e pactl é uma escolha popular, então
+# eles estão incluídos aqui como exemplo. Modifique conforme necessário.
+
+# xss-lock impede a suspensão do sistema e usará o i3lock para bloquear a tela antes de suspender.
+# Use loginctl lock-session para bloquear a tela.
+exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
+
+# O NetworkManager é a forma mais popular de gerenciar redes sem fio no Linux,
+# e o nm-applet é uma GUI independente de ambiente de desktop para isso.
+exec --no-startup-id nm-applet
+
+# Usa o pactl para ajustar o volume no PulseAudio.
+set $refresh_i3status killall -SIGUSR1 i3status
+bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +10% && $refresh_i3status
+bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -10% && $refresh_i3status
+bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle && $refresh_i3status
+bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle && $refresh_i3status
+
+# Usa o Mod+$mod para arrastar janelas flutuantes para a posição desejada
+floating_modifier $mod
+
+# Mover janelas em layout de mosaico clicando com o botão esquerdo na barra de título,
+# ou clicando em qualquer lugar na janela enquanto segura o modificador flutuante.
+tiling_drag modifier titlebar
+
+# Iniciar um terminal
+bindsym $mod+Return exec alacritty
+
+# Iniciar O Thorium
+bindsym $mod+a exec thorium-browser
+
+# Iniciar O Visual Studio Code
+bindsym $mod+s exec --no-startup-id code
+
+# Iniciar O Nemo
+bindsym $mod+e exec nemo
+
+#Iniciar O Gimp
+bindsym $mod+d exec gimp
+
+# Matar a janela focada
+bindsym $mod+q kill
+
+# Iniciar o dmenu (um lançador de programas)
+bindsym $mod+t exec --no-startup-id rofi -show drun
+
+# Um substituto mais moderno para o dmenu é o rofi:
+# bindcode $mod+40 exec "rofi -modi drun,run -show drun"
+# Existe também o i3-dmenu-desktop, que exibe apenas aplicativos com arquivos .desktop.
+# Ele é um wrapper ao redor do dmenu, então é necessário que o dmenu esteja instalado.
+# bindcode $mod+40 exec --no-startup-id i3-dmenu-desktop
+
+# Alterar o foco
+bindsym $mod+j focus left
+bindsym $mod+k focus down
+bindsym $mod+l focus up
+bindsym $mod+ccedilla focus right
+
+# Alternativamente, você pode usar as teclas de seta:
+bindsym $mod+Left focus left
+bindsym $mod+Down focus down
+bindsym $mod+Up focus up
+bindsym $mod+Right focus right
+
+# Mover a janela focada
+# bindsym $mod+h move left
+# bindsym $mod+j move down
+# bindsym $mod+k move up
+# bindsym $mod+l move right
+
+# Alternativamente, você pode usar as teclas de seta:
+bindsym $mod+Shift+Left move left
+bindsym $mod+Shift+Down move down
+bindsym $mod+Shift+Up move up
+bindsym $mod+Shift+Right move right
+
+# Dividir na orientação horizontal
+# bindsym $mod+h split h
+
+# Dividir na orientação vertical
+# bindsym $mod+v split v
+
+# Entrar no modo de tela cheia para o contêiner focado
+bindsym $mod+F11 fullscreen toggle
+#bindsym $mod+v split toggle
+workspace_layout tabbed
+
+# Alterar o layout do contêiner (empilhado, com abas, alternar divisão)
+# bindsym $mod+s layout stacking
+# bindsym $mod+w layout tabbed
+# bindsym $mod+e layout toggle split
+bindsym $mod+z layout toggle all
+# Alternar entre layout de mosaico e flutuante
+bindsym $mod+Shift+space floating toggle
+
+# Alterar o foco entre janelas de mosaico e flutuantes
+bindsym $mod+space focus mode_toggle
+
+# Focar o contêiner pai
+#bindsym $mod+a focus parent
+
+# Focar o contêiner filho
+#bindsym $mod+d focus child
+
+# Definir nomes para as áreas de trabalho padrão, para as quais configuramos as teclas de atalho mais adiante.
+# Usamos variáveis para evitar repetição dos nomes em vários locais.
+set $ws1 "1"
+set $ws2 "2"
+set $ws3 "3"
+set $ws4 "4"
+set $ws5 "5"
+set $ws6 "6"
+set $ws7 "7"
+set $ws8 "8"
+set $ws9 "9"
+set $ws10 "10"
+
+# Alternar entre as áreas de trabalho
+bindsym $mod+1 workspace number $ws1
+bindsym $mod+2 workspace number $ws2
+bindsym $mod+3 workspace number $ws3
+bindsym $mod+4 workspace number $ws4
+bindsym $mod+5 workspace number $ws5
+bindsym $mod+6 workspace number $ws6
+bindsym $mod+7 workspace number $ws7
+bindsym $mod+8 workspace number $ws8
+bindsym $mod+9 workspace number $ws9
+bindsym $mod+0 workspace number $ws10
+
+# Mover o contêiner focado para outra área de trabalho
+bindsym $mod+Shift+1 move container to workspace number $ws1
+bindsym $mod+Shift+2 move container to workspace number $ws2
+bindsym $mod+Shift+3 move container to workspace number $ws3
+bindsym $mod+Shift+4 move container to workspace number $ws4
+bindsym $mod+Shift+5 move container to workspace number $ws5
+bindsym $mod+Shift+6 move container to workspace number $ws6
+bindsym $mod+Shift+7 move container to workspace number $ws7
+bindsym $mod+Shift+8 move container to workspace number $ws8
+bindsym $mod+Shift+9 move container to workspace number $ws9
+bindsym $mod+Shift+0 move container to workspace number $ws10
+
+# Recarregar o arquivo de configuração
+bindsym $mod+Shift+c reload
+# Reiniciar o i3 no local (preserva o layout/sessão, pode ser usado para atualizar o i3)
+bindsym $mod+Shift+r restart
+# Sair do i3 (desloga você da sessão X)
+bindsym $mod+F12 exec "i3-nagbar -t warning -m 'Você pressionou o atalho de saída. Tem certeza que deseja sair do i3? Isso terminará sua sessão X.' -B 'Sim, sair do i3' 'i3-msg exit'"
+
+# Redimensionar a janela (você também pode usar o mouse para isso)
+mode "resize" {
+        # Esses atalhos são acionados assim que você entra no modo de redimensionamento
+
+        # Pressionar para a esquerda reduzirá a largura da janela.
+        # Pressionar para a direita aumentará a largura da janela.
+        # Pressionar para cima reduzirá a altura da janela.
+        # Pressionar para baixo aumentará a altura da janela.
+        bindsym j resize shrink width 10 px or 10 ppt
+        bindsym k resize grow height 10 px or 10 ppt
+        bindsym l resize shrink height 10 px or 10 ppt
+        bindsym ccedilla resize grow width 10 px or 10 ppt
+
+        # Mesmos atalhos, mas para as teclas de seta
+        bindsym Left resize shrink width 10 px or 10 ppt
+        bindsym Down resize grow height 10 px or 10 ppt
+        bindsym Up resize shrink height 10 px or 10 ppt
+        bindsym Right resize grow width 10 px or 10 ppt
+
+        # Voltar ao modo normal: Enter, Escape ou $mod+r
+        bindsym Return mode "default"
+        bindsym Escape mode "default"
+        bindsym $mod+r mode "default"
+}
+
+# i3
+
+# Definindo as bordas das janelas
+for_window [class="^.*"] border pixel 6 
+# Espaçamento entre as bordas
+gaps inner 5
+gaps outer 5
+
+bindsym $mod+r mode "resize"
+
+# class                 border  backgr. text    indicator child_border
+client.focused          #4C566A #3B4252 #ECEFF4 #4C566A   #4C566A
+client.focused_inactive #3B4252 #2E3440 #D8DEE9 #3B4252   #3B4252
+client.unfocused        #434C5E #2E3440 #D8DEE9 #2E3440   #2E3440
+client.urgent           #BF616A #3B4252 #ECEFF4 #BF616A   #BF616A
+client.placeholder      #2E3440 #434C5E #D8DEE9 #2E3440   #434C5E
+client.background       #2E3440
+
+# Iniciar o i3bar para exibir a barra de área de trabalho (mais as informações do sistema que o i3status]
+# descobrir, se disponível)
+
+#Area De Aplicativos Na Inicialização
+exec --no-startup-id polybar example -r 
+exec --no-startup-id nitrogen --restore
+exec --no-startup-id picom --config ~/.config/picom/picom.conf -b
+
