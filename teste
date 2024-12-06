@@ -1,0 +1,20 @@
+shift+g = vai ate o final do codigo
+g+g = vai ate o começo do codigo
+w = caminha por cada palavra do codigo
+0 = vai ate o começo da linha atual do codigo
+L = vai ate o fim da pagina
+d+d = apaga o texto e a linha
+i = entra no modo inserção antes a letra que estava antes
+a = entra no modo inserção apos a letra que estava antes
+A = entra no modo inserção no final da linha
+I = entra no modo inserção no começo da linha
+v = seleciona multiplas palavras e linhas
+V = seleciona apenas a linha atual
+y = copia o texto selecionado
+d = recorta o texto selecionado
+p = colar o texto copiado
+
+modifica palavras letras e etc...
+:%s/palavra/nova_palavra
+/palavra_que_quer_buscar
+:set nohlsearch remove a seleção de palavras de comandos
