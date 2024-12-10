@@ -64,6 +64,9 @@ bindsym $mod+d exec gimp
 # Matar a janela focada
 bindsym $mod+q kill
 
+# Iniciar O Coreshot
+bindsym $mod+p exec coreshot
+
 # Iniciar o dmenu (um lançador de programas)
 bindsym $mod+t exec --no-startup-id rofi -show drun
 
@@ -74,10 +77,10 @@ bindsym $mod+t exec --no-startup-id rofi -show drun
 # bindcode $mod+40 exec --no-startup-id i3-dmenu-desktop
 
 # Alterar o foco
-bindsym $mod+j focus left
-bindsym $mod+k focus down
-bindsym $mod+l focus up
-bindsym $mod+ccedilla focus right
+#bindsym $mod+j focus left
+#bindsym $mod+k focus down
+#bindsym $mod+l focus up
+#bindsym $mod+ccedilla focus right
 
 # Alternativamente, você pode usar as teclas de seta:
 bindsym $mod+Left focus left
@@ -85,11 +88,11 @@ bindsym $mod+Down focus down
 bindsym $mod+Up focus up
 bindsym $mod+Right focus right
 
-# Mover a janela focada
-# bindsym $mod+h move left
-# bindsym $mod+j move down
-# bindsym $mod+k move up
-# bindsym $mod+l move right
+#Mover a janela focada
+#bindsym $mod+h move left
+#bindsym $mod+j move down
+#bindsym $mod+k move up
+#bindsym $mod+l move right
 
 # Alternativamente, você pode usar as teclas de seta:
 bindsym $mod+Shift+Left move left
@@ -197,7 +200,7 @@ mode "resize" {
 # i3
 
 # Definindo as bordas das janelas
-for_window [class="^.*"] border pixel 6 
+for_window [class="^.*"] border pixel 6
 # Espaçamento entre as bordas
 gaps inner 5
 gaps outer 5
@@ -216,7 +219,8 @@ client.background       #2E3440
 # descobrir, se disponível)
 
 #Area De Aplicativos Na Inicialização
-exec --no-startup-id polybar example -r 
+exec --no-startup-id polybar example -r
 exec --no-startup-id nitrogen --restore
-exec --no-startup-id picom --config ~/.config/picom/picom.conf -b
-
+exec --no-startup-id picom --config ~/.config/picom/picom.sample.conf -b
+exec --no-startup-id xinput set-prop USB OPTICAL MOUSE "libinput Accel Profile Enabled" 0, 1
+exec --no-startup-id ~/kimy.sh
